@@ -1,0 +1,53 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <iostream>
+#include <vector>
+
+using namespace std;
+//arr{5, 6, 1, 2, 3, 4, 5, 4, 3, 2, 0, 1, 2, 3, -2, 4};
+int findHeighestPeak(vector<int> arr)
+{
+    int size = arr.size();
+    int start = 0;
+    int rise_number = 1;
+    int dec_number  = 1;
+    int max = 0;
+    bool rissing = false;
+    while(start < size)
+    { 
+        if(arr[start+1] > arr[start])
+        { 
+            if(rissing == false)
+            {
+                if(max < rise_number)
+                {
+                    max = rise_number;
+                }
+                rise_number = 1;
+                rissing = true;
+            }
+            rise_number++;
+            start++;
+        }
+        else if(arr[start+1] < arr[start])
+        {
+            rissing = false;
+            rise_number++;
+            start++;
+        }
+    }
+    return max;
+}
+
+int main()
+{
+    vector<int> arr{5, 6, 1, 2, 3, 4, 5, 4, 3, 2, 0, -1, 1, 2, 3, -2, 4};
+    cout << findHeighestPeak(arr);
+    return 0;
+}
